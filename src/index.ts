@@ -11,10 +11,13 @@ const intervalo$ = new Observable<number>(subscriber => {
     const interval = setInterval(() => {
         count ++;
         subscriber.next(count);
+        subscriber.complete();
     }, 1000);
     
     return () => {
         clearInterval(interval);
+        console.log('intervalo terminado');
+        
     }
 });
 
