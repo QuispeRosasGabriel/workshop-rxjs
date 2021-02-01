@@ -10,7 +10,7 @@ const intervalo$ = new Observable<number>(subs => {
     const intervalID = setInterval(() => {
         subs.next(Math.random());
 
-    }, 5000);
+    }, 1000);
 
     return () => clearInterval(intervalID);
     
@@ -18,5 +18,10 @@ const intervalo$ = new Observable<number>(subs => {
 
 const subject$ = new Subject();
 intervalo$.subscribe(subject$);
-const subs1 = subject$.subscribe(console.log);
-const subs2 = subject$.subscribe(console.log);
+const subs1 = subject$.subscribe(observer);
+const subs2 = subject$.subscribe(observer);
+
+setTimeout(() => {
+    subject$.next(10);
+    subject$.complete();
+}, 3500);
