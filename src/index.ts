@@ -6,8 +6,10 @@ const observer = {
     complete: () => console.log('complete')
 };
 
+const hoyEn5 = new Date();
+hoyEn5.setSeconds(5000);
 const obs1$ = interval(1000);
-const obs2$ = timer(2000);
+const obs2$ = timer(2000, 1000);
 
 console.log('inicio');
 //obs1$.subscribe(observer);
