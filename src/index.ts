@@ -1,10 +1,15 @@
-import { range, of, asyncScheduler } from "rxjs";
+import { interval, timer } from "rxjs";
 
-const obs1$ = of(1,2,3,4,5);
-// el asyncscheduler nos ayuda a trasfromar los metodos sincronos en asincronos
-const obs2$ = range(-5,10, asyncScheduler);
+const observer = {
+    next: (val) => console.log(val),
+    err: (err) => console.log(err),
+    complete: () => console.log('complete')
+};
+
+const obs1$ = interval(1000);
+const obs2$ = timer(2000);
 
 console.log('inicio');
-obs1$.subscribe(console.log);
-obs2$.subscribe(console.log);
+//obs1$.subscribe(observer);
+obs2$.subscribe(observer);
 console.log('fin');
